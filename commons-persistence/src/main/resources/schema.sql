@@ -1241,6 +1241,7 @@ CREATE TABLE public."CSAFSOURCEENTITY" (
     "AGGREGATOR" boolean,
     "DISCOVERY" boolean,
     "SEEN" boolean,
+    "DOMAIN" boolean,
     "LASTFETCHED" timestamp with time zone,
     "CONTENT" text
 );
