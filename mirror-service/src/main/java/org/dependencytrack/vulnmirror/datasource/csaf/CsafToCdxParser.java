@@ -49,6 +49,8 @@ import java.util.stream.Collectors;
  */
 public class CsafToCdxParser {
     private static final String TITLE_PROPERTY_NAME = "dependency-track:vuln:title";
+    private static final String PUBLISHERNAMESPACE_PROPERTY_NAME = "dependency-track:vuln:csaf:publisher";
+    private static final String TRACKINGID_PROPERTY_NAME = "dependency-track:vuln:csaf:trackingId";
     private static final Source SOURCE = Source.newBuilder().setName(Datasource.CSAF.name()).build();
     private static final Logger LOGGER = LoggerFactory.getLogger(CsafToCdxParser.class);
 
@@ -58,6 +60,11 @@ public class CsafToCdxParser {
         // Set ID and source
         out.setId(computeVulnerabilityId(csafVuln, csafDoc, vulnIndex));
         out.setSource(SOURCE);
+
+        out.addProperties(Property.newBuilder().setName(PUBLISHERNAMESPACE_PROPERTY_NAME)
+                .setValue(csafDoc.getPublisher().getNamespace().toString()));
+        out.addProperties(Property.newBuilder().setName(TRACKINGID_PROPERTY_NAME)
+                .setValue(csafDoc.getTracking().getId()));
 
         // Set title
         Optional.ofNullable(csafVuln.getTitle())
@@ -100,8 +107,8 @@ public class CsafToCdxParser {
                     out.addReferences(VulnerabilityReference.newBuilder()
                             .setId(cve)
                             .setSource(Source.newBuilder().setName(Datasource.NVD.name())
-                            .build()));
-                        });
+                                    .build()));
+                });
 
         // Set vulnerability scores (CVSS values)
         if (csafVuln.getScores() != null) {
@@ -119,12 +126,12 @@ public class CsafToCdxParser {
         // Set credits / acknowledgments
         var builder = VulnerabilityCredits.newBuilder();
         Optional.ofNullable(csafVuln.getAcknowledgments()).ifPresent(acks -> acks.forEach(ack -> {
-            if(ack.getOrganization() != null) {
+            if (ack.getOrganization() != null) {
                 builder.addOrganizations(OrganizationalEntity.newBuilder()
                         .setName(ack.getOrganization()).build());
             }
 
-            if(ack.getNames() != null) {
+            if (ack.getNames() != null) {
                 ack.getNames().forEach(name -> {
                     builder.addIndividuals(OrganizationalContact.newBuilder()
                             .setName(name).build());

@@ -240,6 +240,8 @@ public class CsafMirror extends AbstractDatasourceMirror<CsafMirrorState> {
                     LOGGER.info("Processing CSAF document {} from provider {}", csaf.getDocument().getTracking().getId(), providerEntity.getUrl());
                     publishCsafDocument(doc);
 
+                    // TODO check queue safety
+
                     var vulns = csaf.getVulnerabilities();
                     for (int idx = 0; vulns != null && idx < vulns.size(); idx++) {
                         var vuln = vulns.get(idx);
