@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -341,8 +341,15 @@
   
     
     
+      
+  
+  
+  
+  
+    
+    
       <li class="md-tabs__item">
-        <a href="../../../development/overview/" class="md-tabs__link">
+        <a href="../../../usage/auth-and-roles/overview.md" class="md-tabs__link">
           
   
   
@@ -350,6 +357,9 @@
 
         </a>
       </li>
+    
+  
+
     
   
 
@@ -990,6 +1000,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/decisions/007-spec-first-rest-api-v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ADR-007: Spec-First REST API v2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1188,6 +1221,78 @@
             Development
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Roles
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Roles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../usage/auth-and-roles/overview.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
             
               
                 
@@ -1740,6 +1845,33 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#devservicesportfrontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      dev.services.port.frontend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devservicesportkafka" class="md-nav__link">
+    <span class="md-ellipsis">
+      dev.services.port.kafka
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devservicesportpostgres" class="md-nav__link">
+    <span class="md-ellipsis">
+      dev.services.port.postgres
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1786,24 +1918,6 @@
   <a href="#alpinedatadirectory" class="md-nav__link">
     <span class="md-ellipsis">
       alpine.data.directory
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#alpineprivatekeypath" class="md-nav__link">
-    <span class="md-ellipsis">
-      alpine.private.key.path
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#alpinepublickeypath" class="md-nav__link">
-    <span class="md-ellipsis">
-      alpine.public.key.path
     </span>
   </a>
   
@@ -3713,7 +3827,7 @@
 
 
   
-    <a href="https://github.com/DependencyTrack/hyades/blob/main/docs/reference/configuration/api-server.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/DependencyTrack/hyades/blob/main/docs/reference/configuration/api-server.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -4337,6 +4451,78 @@
   </tbody>
 </table>
 
+<hr />
+<h3 id="devservicesportfrontend">dev.services.port.frontend<a class="headerlink" href="#devservicesportfrontend" title="Permanent link">&para;</a></h3>
+<p>The port on which the frontend dev services container shall be exposed on the host.  </p>
+<table>
+  <tbody style="border: 0">
+    <tr>
+      <th style="text-align: right">Required</th>
+      <td style="border-width: 0">false</td>
+    </tr>
+    <tr>
+      <th style="text-align: right">Type</th>
+      <td style="border-width: 0"><code>integer</code></td>
+    </tr>
+    <tr>
+      <th style="text-align: right">Default</th>
+      <td style="border-width: 0"><code>8081</code></td>
+    </tr>
+    <tr>
+      <th style="text-align: right">ENV</th>
+      <td style="border-width: 0"><code>DEV_SERVICES_PORT_FRONTEND</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+<h3 id="devservicesportkafka">dev.services.port.kafka<a class="headerlink" href="#devservicesportkafka" title="Permanent link">&para;</a></h3>
+<p>The port on which the Kafka dev services container shall be exposed on the host.  </p>
+<table>
+  <tbody style="border: 0">
+    <tr>
+      <th style="text-align: right">Required</th>
+      <td style="border-width: 0">false</td>
+    </tr>
+    <tr>
+      <th style="text-align: right">Type</th>
+      <td style="border-width: 0"><code>integer</code></td>
+    </tr>
+    <tr>
+      <th style="text-align: right">Default</th>
+      <td style="border-width: 0"><code>9092</code></td>
+    </tr>
+    <tr>
+      <th style="text-align: right">ENV</th>
+      <td style="border-width: 0"><code>DEV_SERVICES_PORT_KAFKA</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+<h3 id="devservicesportpostgres">dev.services.port.postgres<a class="headerlink" href="#devservicesportpostgres" title="Permanent link">&para;</a></h3>
+<p>The port on which the PostgreSQL dev services container shall be exposed on the host.  </p>
+<table>
+  <tbody style="border: 0">
+    <tr>
+      <th style="text-align: right">Required</th>
+      <td style="border-width: 0">false</td>
+    </tr>
+    <tr>
+      <th style="text-align: right">Type</th>
+      <td style="border-width: 0"><code>integer</code></td>
+    </tr>
+    <tr>
+      <th style="text-align: right">Default</th>
+      <td style="border-width: 0"><code>5432</code></td>
+    </tr>
+    <tr>
+      <th style="text-align: right">ENV</th>
+      <td style="border-width: 0"><code>DEV_SERVICES_PORT_POSTGRES</code></td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="general">General<a class="headerlink" href="#general" title="Permanent link">&para;</a></h2>
 <h3 id="alpineapikeyprefix">alpine.api.key.prefix<a class="headerlink" href="#alpineapikeyprefix" title="Permanent link">&para;</a></h3>
 <p>Defines the prefix to be used for API keys. A maximum prefix length of 251  characters is supported. The prefix may also be left empty.  </p>
@@ -4429,62 +4615,6 @@
     <tr>
       <th style="text-align: right">ENV</th>
       <td style="border-width: 0"><code>ALPINE_DATA_DIRECTORY</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-<h3 id="alpineprivatekeypath">alpine.private.key.path<a class="headerlink" href="#alpineprivatekeypath" title="Permanent link">&para;</a></h3>
-<p>Defines the paths to the public-private key pair to be used for signing and verifying digital signatures.  The keys will be generated upon first startup if they do not exist.  </p>
-<table>
-  <tbody style="border: 0">
-    <tr>
-      <th style="text-align: right">Required</th>
-      <td style="border-width: 0">false</td>
-    </tr>
-    <tr>
-      <th style="text-align: right">Type</th>
-      <td style="border-width: 0"><code>string</code></td>
-    </tr>
-    <tr>
-      <th style="text-align: right">Default</th>
-      <td style="border-width: 0"><code>${alpine.data.directory}/keys/private.key</code></td>
-    </tr>
-    <tr>
-      <th style="text-align: right">Example</th>
-      <td style="border-width: 0"><code>/var/run/secrets/private.key</code></td>
-    </tr>
-    <tr>
-      <th style="text-align: right">ENV</th>
-      <td style="border-width: 0"><code>ALPINE_PRIVATE_KEY_PATH</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-<h3 id="alpinepublickeypath">alpine.public.key.path<a class="headerlink" href="#alpinepublickeypath" title="Permanent link">&para;</a></h3>
-<p>Defines the paths to the public-private key pair to be used for signing and verifying digital signatures.  The keys will be generated upon first startup if they do not exist.  </p>
-<table>
-  <tbody style="border: 0">
-    <tr>
-      <th style="text-align: right">Required</th>
-      <td style="border-width: 0">false</td>
-    </tr>
-    <tr>
-      <th style="text-align: right">Type</th>
-      <td style="border-width: 0"><code>string</code></td>
-    </tr>
-    <tr>
-      <th style="text-align: right">Default</th>
-      <td style="border-width: 0"><code>${alpine.data.directory}/keys/public.key</code></td>
-    </tr>
-    <tr>
-      <th style="text-align: right">Example</th>
-      <td style="border-width: 0"><code>/var/run/secrets/public.key</code></td>
-    </tr>
-    <tr>
-      <th style="text-align: right">ENV</th>
-      <td style="border-width: 0"><code>ALPINE_PUBLIC_KEY_PATH</code></td>
     </tr>
   </tbody>
 </table>
@@ -6964,7 +7094,7 @@
 
 <hr />
 <h3 id="alpineoidcteamsclaim">alpine.oidc.teams.claim<a class="headerlink" href="#alpineoidcteamsclaim" title="Permanent link">&para;</a></h3>
-<p>Defines the name of the claim that contains group memberships or role assignments in the provider's userinfo endpoint.  The claim must be an array of strings. Most public identity providers do not support group or role management.  When using a customizable / on-demand hosted identity provider, name, content, and inclusion in the userinfo endpoint  will most likely need to be configured.  </p>
+<p>Defines the name of the claim that contains group memberships or role assignments in the provider's userinfo endpoint.  The claim must be an array of strings, or a comma-delimited string. Most public identity providers do not support group or role management.  When using a customizable / on-demand hosted identity provider, name, content, and inclusion in the userinfo endpoint  will most likely need to be configured.  </p>
 <table>
   <tbody style="border: 0">
     <tr>
@@ -7840,7 +7970,7 @@
 
 <hr />
 <h3 id="taskmetricsmaintenancecron">task.metrics.maintenance.cron<a class="headerlink" href="#taskmetricsmaintenancecron" title="Permanent link">&para;</a></h3>
-<p>Cron expression of the metrics maintenance task.  <br/><br/>  The task deletes records older than the configured metrics retention duration from the following tables:  <ul>  <li><code>DEPENDENCYMETRICS</code></li>  <li><code>PROJECTMETRICS</code></li>  <li><code>PORTFOLIOMETRICS</code></li>  </ul>  </p>
+<p>Cron expression of the metrics maintenance task.  <br/><br/>  The task creates new partitions for the day for the following tables  And deletes records older than the configured metrics retention duration from the following tables:  <ul>  <li><code>DEPENDENCYMETRICS</code></li>  <li><code>PROJECTMETRICS</code></li>  <li><code>PORTFOLIOMETRICS</code></li>  </ul>  </p>
 <table>
   <tbody style="border: 0">
     <tr>
@@ -7853,7 +7983,7 @@
     </tr>
     <tr>
       <th style="text-align: right">Default</th>
-      <td style="border-width: 0"><code>0 */3 * * *</code></td>
+      <td style="border-width: 0"><code>1 * * * *</code></td>
     </tr>
     <tr>
       <th style="text-align: right">ENV</th>
@@ -8830,10 +8960,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.action.edit", "content.code.copy", "content.code.select", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "search.share", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.action.edit", "content.code.copy", "content.code.select", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "search.share", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
     
   </body>
