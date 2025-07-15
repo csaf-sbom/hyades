@@ -18,12 +18,20 @@
  */
 package org.dependencytrack.persistence.repository;
 
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
+import io.quarkus.panache.common.Page;
+import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.dependencytrack.persistence.model.CsafDocumentEntity;
 
 @ApplicationScoped
 public class CsafDocumentRepository implements PanacheRepositoryBase<CsafDocumentEntity, String> {
+    public PanacheQuery<CsafDocumentEntity> paginated() {
+        return this.findAll(Sort.by("id")).page(Page.ofSize(100));
+    }
 
-
+    public PanacheQuery<CsafContent> paginatedCsafContent() {
+        return this.findAll(Sort.by("id")).project(CsafContent.class).page(Page.ofSize(100));
+    }
 }

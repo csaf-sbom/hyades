@@ -22,16 +22,7 @@ import com.google.protobuf.Timestamp;
 import io.csaf.schema.generated.Csaf;
 import io.csaf.schema.generated.Csaf.Id;
 import org.apache.commons.codec.binary.Hex;
-import org.cyclonedx.proto.v1_6.Bom;
-import org.cyclonedx.proto.v1_6.OrganizationalContact;
-import org.cyclonedx.proto.v1_6.OrganizationalEntity;
-import org.cyclonedx.proto.v1_6.Property;
-import org.cyclonedx.proto.v1_6.ScoreMethod;
-import org.cyclonedx.proto.v1_6.Source;
-import org.cyclonedx.proto.v1_6.Vulnerability;
-import org.cyclonedx.proto.v1_6.VulnerabilityCredits;
-import org.cyclonedx.proto.v1_6.VulnerabilityRating;
-import org.cyclonedx.proto.v1_6.VulnerabilityReference;
+import org.cyclonedx.proto.v1_6.*;
 import org.dependencytrack.vulnmirror.datasource.Datasource;
 import org.dependencytrack.vulnmirror.datasource.util.ParserUtil;
 import org.slf4j.Logger;
@@ -55,6 +46,10 @@ public class CsafToCdxParser {
     private static final Logger LOGGER = LoggerFactory.getLogger(CsafToCdxParser.class);
 
     public static Bom parse(Csaf.Vulnerability csafVuln, Csaf.Document csafDoc, int vulnIndex) throws NoSuchAlgorithmException {
+        return Bom.newBuilder().addVulnerabilities(parseVulnerability(csafVuln, csafDoc, vulnIndex)).build();
+    }
+
+    public static Vulnerability.Builder parseVulnerability(Csaf.Vulnerability csafVuln, Csaf.Document csafDoc, int vulnIndex) throws NoSuchAlgorithmException {
         Vulnerability.Builder out = Vulnerability.newBuilder();
 
         // Set ID and source
@@ -114,20 +109,37 @@ public class CsafToCdxParser {
                 .ifPresent(cve -> {
                     out.addReferences(VulnerabilityReference.newBuilder()
                             .setId(cve)
-                            .setSource(Source.newBuilder().setName(Datasource.NVD.name())
-                            .build()));
-                        });
+                            .setSource(Source.newBuilder().setName(Datasource.NVD.name())));
+                });
+
+        // Add references to additional ids
+        if (csafVuln.getIds() != null) {
+            for (final Csaf.Id id : csafVuln.getIds()) {
+                out.addReferences(VulnerabilityReference.newBuilder()
+                        .setId(id.getSystem_name())
+                        .setSource(Source.newBuilder().setName(id.getText())));
+            }
+        }
 
         // Set vulnerability scores (CVSS values)
         if (csafVuln.getScores() != null) {
-            for (Csaf.Score score : csafVuln.getScores()) {
+            for (final Csaf.Score score : csafVuln.getScores()) {
                 Optional.ofNullable(score.getCvss_v2())
                         .flatMap(cvssV2 -> parseCvssVector(cvssV2.getVectorString(), ScoreMethod.SCORE_METHOD_CVSSV2))
                         .ifPresent(out::addRatings);
 
                 Optional.ofNullable(score.getCvss_v3())
-                        .flatMap(cvssV2 -> parseCvssVector(cvssV2.getVectorString(), ScoreMethod.SCORE_METHOD_CVSSV3))
+                        .flatMap(cvssV3 -> parseCvssVector(cvssV3.getVectorString(), ScoreMethod.SCORE_METHOD_CVSSV3))
                         .ifPresent(out::addRatings);
+            }
+        }
+
+        // Set references, which are advisories in Cdx
+        if (csafVuln.getReferences() != null) {
+            for (final Csaf.Reference reference : csafVuln.getReferences()) {
+                out.addAdvisories(
+                        Advisory.newBuilder().setUrl(reference.getUrl().toString())
+                );
             }
         }
 
@@ -153,7 +165,7 @@ public class CsafToCdxParser {
                 .map(cwe -> Integer.parseInt(cwe.getId().split("-")[1]))
                 .ifPresent(out::addCwes);
 
-        return Bom.newBuilder().addVulnerabilities(out).build();
+        return out;
     }
 
     /**
